@@ -14,6 +14,8 @@ namespace RockPaperScissorText
         public static string playerRPSChoice;
         public static int playerRPSNumValue;
         public static int yourScore = 0;
+        public static string youchose = "null";
+
 
 
 
@@ -74,29 +76,34 @@ namespace RockPaperScissorText
             Console.WriteLine($"Your current score is {yourScore}.");
 
             // TODO: Ask the Hooman to enter 'R' for Rock, 'P' for Paper, or 'S' for Scissors.
-            Console.WriteLine("Hooman Enter R for Rock  P for Paper S Scissors. ");
+            Console.WriteLine("Hello Hooman! Please enter 'R' for rock, 'P' for Paper, or 'S' for Scissors");
             // TODO: Assign the user input of R, P, S to the variable playerRPSChoice. HINT... use .ToLower() so that capitalization does not matter from the user.
-      
             playerRPSChoice = Console.ReadLine().ToLower();
 
-            if (playerRPSChoice == "r")
+            if (playerRPSChoice == "r" || playerRPSChoice == "rock")
             {
-                Console.WriteLine("You chose Rock");
-                Console.ReadLine();
+                Console.WriteLine("You Chose Rock!");
+                playerRPSNumValue = 3;
+                youchose = "rock";
+
             }
-            else if (playerRPSChoice == "p")
+            else if (playerRPSChoice == "p" || playerRPSChoice == "paper")
             {
-                Console.WriteLine("You chose paper");
-                Console.ReadLine();
+                Console.WriteLine("You Chose Paper!");
+                playerRPSNumValue = 2;
+                youchose = "paper";
+
             }
-            else if (playerRPSChoice == "s")
+            else if (playerRPSChoice == "s" || playerRPSChoice == "scissors")
             {
-                Console.WriteLine("You chose Scissors");
-                Console.ReadLine();
+                Console.WriteLine("You Chose Scissors!");
+                playerRPSNumValue = 1;
+                youchose = "scissors";
+
             }
             else
             {
-                Console.WriteLine("I didn't understand your choce.");
+                Console.WriteLine("I didn't understand your choice");
                 RPSChoices();
             }
 
@@ -118,19 +125,55 @@ namespace RockPaperScissorText
                     rpsComputerPlays = "Paper";
                     break;
                 case 1:
-                    Console.WriteLine($"PC chose a {computerRPSRandomNum}. That is equal to Rock");
+                    Console.WriteLine($"PC chose a {computerRPSRandomNum}. That is equal to Scissors");
                     rpsComputerPlays = "Scissors";
                     break;
             }
 
             // TODO: Add a Switch Statement based on playerRPSChoice. It should output to the screen what they chose (for example: Console.WriteLine($"You chose Rock");. AND assign a value to playerRPSNumValue. The playerRPSNumValue should be the same as the computerRPSRandomNum. So r = 3, p = 2 and s = 1.
-            
 
             WinnerLoserLogic();
-
+            Console.WriteLine($"Your score is {yourScore}");
             Console.WriteLine("Would you like to play again? 'Y' for Yes, 'N' for No.");
             string playAgain = Console.ReadLine().ToLower();
             // TODO: Add a Switch Statement to ask the player if they want to play again. If yes, call the method "RPSChoices();" if no, exit the program.
+
+            if (playAgain == "yes" || playAgain == "y")
+            {
+              
+                Console.WriteLine("Lets Play Again!");
+                RPSChoices();
+            }
+            else if (playAgain == "yes")
+            {
+                
+                Console.WriteLine("Lets Play Again!");
+                RPSChoices();
+            }
+            else if (playAgain == "no" || playAgain == "n")
+            {
+                Console.WriteLine("Game is ending");
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            if (playerRPSChoice == "yes")
+            {
+
+            }
 
         }
 
@@ -140,6 +183,33 @@ namespace RockPaperScissorText
             Console.WriteLine($"PC Chose {rpsComputerPlays}.");
 
             // TODO: Add logic to determine the winner between the player and computer. You may use either an Else If Statement or Switch Statement to do it. 
+
+            if (playerRPSNumValue == computerRPSRandomNum)
+            {
+                Console.WriteLine($"You chose {youchose} and computer chose {rpsComputerPlays} which is a tie!");
+            }
+            else if (playerRPSNumValue == 1 && computerRPSRandomNum == 2)
+            {
+                Console.WriteLine($"You chose {youchose} and computer chose {rpsComputerPlays}, you win!");
+                yourScore++;
+            }
+            else if (playerRPSNumValue == 2 && computerRPSRandomNum == 3)
+            {
+                Console.WriteLine($"You chose {youchose} and computer chose {rpsComputerPlays}, you win!");
+                yourScore++;
+            }
+            else if (playerRPSNumValue == 3 && computerRPSRandomNum == 1)
+            {
+                Console.WriteLine($"You chose {youchose} and computer chose {rpsComputerPlays}, you win!");
+                yourScore++;
+            }
+            else
+            {
+                Console.WriteLine($"You chose {youchose} and computer chose {rpsComputerPlays}, you lose!");
+                yourScore--;
+            }
+
+
             // TODO: based on whether the player wins or loses, increment or decrement the variable "yourScore". This will be ++yourScore if they win or --yourScore if they lose. If it is a tie, there should be no change. 
 
 
